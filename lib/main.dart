@@ -21,9 +21,9 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: 'Rinaldi Fauzi', text: 'I have nothing to declare except my genius')
   ];
 
-  Widget quoteTemplate(quote){
-    return QuoteCard(quote: quote);
-  }
+  // Widget quoteTemplate(quote){
+  //   return QuoteCard(quote: quote);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,15 @@ class _QuoteListState extends State<QuoteList> {
       ),
       body: Column(
         // children: quotes.map((quote) => Text('${quote.author} - ${quote.text}')).toList(),
-        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+        // children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+        children: quotes.map((quote) => QuoteCard(
+          quote: quote,
+          delete: () {
+            setState(() {
+              quotes.remove(quote);
+            });
+          }
+        )).toList(),
       ),
     );
   }
